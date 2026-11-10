@@ -1,0 +1,48 @@
+name: CI
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: 24.22.1
+                  cache: npm
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run typecheck
+            - run: npm test
+            - run: npm run test:coverage
+            - run: npm run build
+              env:
+                  PAYLOAD_SECRET: ci-build-only
+                  STORAGE_DRIVER: local
+                  DATABASE_URL: postgresql://payload:payload@localhost:5432/payload
+            - name: Start Docker services
+              run: docker compose up -d --build
+              env:
+                  POSTGRES_DB: crossborder_skills
+                  POSTGRES_USER: payload
+                  POSTGRES_PASSWORD: ci-database-password
+                  PAYLOAD_SECRET: ci-payload-secret
+            - name: Verify Phase 2 data rules
+              run: npm run verify:phase2
+              env:
+                  NODE_ENV: production
+                  STORAGE_DRIVER: local
+                  PAYLOAD_SECRET: ci-payload-secret
+                  DATABASE_URL: postgresql://payload:ci-database-password@localhost:5432/crossborder_skills
+            - name: Install Playwright Chromium
+              run: npx playwright install --with-deps chromium
+            - name: Run public browser checks
+              run: npm run test:e2e
+              env:
+                  PLAYWRIGHT_BASE_URL: http://127.0.0.1:3000
+            - name: Stop Docker services
+              if: always()
+              run: docker compose down

@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+
+# 依赖与构建产物
+node_modules/
+.next/
+dist/
+build/
+media/
+
+# 环境与密钥
+.env
+.env.*
+!.env.example
+
+# 测试与日志
+coverage/
+playwright-report/
+test-results/
+.cache/
+*.log
+*.tsbuildinfo
