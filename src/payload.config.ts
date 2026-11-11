@@ -16,6 +16,7 @@ import { SkillVersions } from './collections/SkillVersions.ts'
 import { Tags } from './collections/Tags.ts'
 import { Tools } from './collections/Tools.ts'
 import { Users } from './collections/Users.ts'
+import { executeCrawlTask } from './modules/crawler/execute.ts'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -79,6 +80,12 @@ export default buildConfig({
     editor: lexicalEditor(),
     jobs: {
         tasks: [
+            {
+                slug: 'crawlSkill',
+                inputSchema: [{ name: 'taskId', type: 'number', required: true }],
+                retries: 0,
+                handler: async ({ input, req }) => ({ output: await executeCrawlTask(req.payload, input.taskId) }),
+            },
             {
                 slug: 'systemHealthCheck',
                 // Payload 至少需要一个系统任务才会启用 Jobs Collection 和 Worker。

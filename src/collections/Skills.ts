@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { APIError, type CollectionConfig } from 'payload'
 
 import { adminManaged, allowPublishedSkillRead, preventHardDelete, requireAdminField } from './access.ts'
+import { recrawlSkill } from '../modules/crawler/tasks.ts'
 import { getSafeSourceUrl, normalizeRepositoryUrl } from '../modules/skills/source.ts'
 
 function getRelationshipID(value: unknown) {
@@ -11,11 +12,15 @@ function getRelationshipID(value: unknown) {
 
 export const Skills: CollectionConfig = {
     slug: 'skills',
-    admin: { useAsTitle: 'name' },
+    admin: {
+        components: { edit: { beforeDocumentControls: ['/components/admin/CrawlActions#RecrawlSkillButton'] } },
+        useAsTitle: 'name',
+    },
     access: {
         ...adminManaged(allowPublishedSkillRead),
         delete: () => false,
     },
+    endpoints: [{ handler: recrawlSkill, method: 'post', path: '/:id/recrawl' }],
     indexes: [{ fields: ['repository_url', 'repository_path'], unique: true }],
     hooks: {
         beforeDelete: [preventHardDelete],

@@ -260,7 +260,7 @@ const parent = await payload.create({
         data: {
             source_url: failedTask.source_url,
             task_type: 'crawl',
-            status: 'queued',
+            status: 'failed',
             retry_of: failedTask.id,
         },
     })

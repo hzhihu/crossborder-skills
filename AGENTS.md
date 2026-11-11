@@ -16,11 +16,11 @@
 
 ## 3. 当前阶段边界
 
-当前阶段仅完成文档和目录初始化，不代表 Next.js 工程已经创建。
+Next.js 工程已经创建，Phase 1、Phase 2 P0 和 Phase 3 P0 已完成；当前工程进度以 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) §1 为准。
 
-未收到后续工程实施指令前，不创建应用、安装依赖、生成业务代码或修改原始 MVP 文档。
+工程实施必须按照 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) 的阶段和依赖推进；未收到当前阶段实施指令前，不提前实现后续阶段或 P1、P2 能力，不修改原始 MVP 文档。
 
-`src` 和 `tests` 当前仅为后续工程预留目录，不得以占位业务代码填充。
+`src` 和 `tests` 已包含实际工程与测试代码，不得写入与当前任务无关的占位业务代码。
 
 ## 4. 文档与设计
 
@@ -53,11 +53,29 @@
 
 任何要求向 [DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) 回写 Token 语义的旧指令均不得作为实现依据；设计变量只由 [DESIGN_TOKENS.md](docs/DESIGN_TOKENS.md) 决定，旧回写指令须在 [DESIGN_APPROVAL.md](docs/DESIGN_APPROVAL.md) 登记并经审批后清理，不得先行实施。
 
-README 当前 Phase 2 前置链接、只列第 1 至第 5 项的说明和目录树均不是实施依据；未按 [DESIGN_APPROVAL.md](docs/DESIGN_APPROVAL.md) D-08 获批修正前，以 [PRODUCT.md](docs/PRODUCT.md) §10 及 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) Phase 2 的第 1 至第 5 项和第 11 项为准，失效锚点 `#7-待确认事项` 和遗漏 `design/prototypes` 的目录树不得用于导航。
-
 发现文件冲突时先停止受影响范围的实现，记录冲突文件、章节、影响和建议，提交产品负责人确认；不得静默选择、混合规则或以实现默认值定案。
 
 [原始 MVP 文档](docs/crossBorder_skills_hub_mvp_v1.md) 必须保留且不可修改，不得以专项规范、冲突整改或历史文档清理为由改写。
+
+### 4.2 状态归属与文档同步门槛
+
+| 状态或决策 | 权威记录 | 同步要求 |
+|---|---|---|
+| 工程阶段、实际完成范围和未交付能力 | [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) §1 | 阶段状态变化时更新；[README.md](README.md) 只保留入口摘要和下一阶段 |
+| 产品范围、业务规则和产品决策 | [PRODUCT.md](docs/PRODUCT.md) | 决策确认时更新对应正文和 §10，相关专项文件同步检查 |
+| 页面、交互和公开边界 | [PAGE_STRUCTURE.md](docs/PAGE_STRUCTURE.md) 及对应专项文件 | 决策确认时更新现行规则，不只追加确认记录 |
+| 截图与视觉成果审批 | [DESIGN_APPROVAL.md](docs/DESIGN_APPROVAL.md) | 候选、批准和退回状态以真实审批记录为准 |
+| 验收条件与实际结果 | [ACCEPTANCE.md](docs/ACCEPTANCE.md) 及对应阶段交付记录 | 验收条件与执行结果分开记录，不把计划写成通过 |
+
+代码实现、阶段完成或事项确认后，必须在同一任务内更新受影响的权威文档和当前状态；不是所有代码修改都要更新全部文档，但不得留下与实现或决策冲突的现行描述。
+
+确认事项时，应同时修正同一文件前文的「待确认」「未确认前」和条件降级规则；需要保留历史过程时，必须标明记录日期和当时状态，不得以历史记录代替当前结论。
+
+其他文档不重复维护工程阶段状态，改为链接 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) §1；确需摘要时只描述本文件所需范围，并链接权威记录。
+
+交付前必须检索受影响文档中的「待确认」「尚未实现」「当前仅」「后续工程实施」等状态词，逐项判断是现行规则还是历史记录，并核对实际目录和代码；不得只更新文件末尾的进度或确认记录。
+
+交付说明必须列出同步修改的文档和仍然开放的确认事项；发现状态冲突但未获处理授权时，停止受影响工作并提交产品负责人确认。
 
 ## 5. 后续工程实施
 

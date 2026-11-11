@@ -2,15 +2,15 @@
 
 ## 1. 当前状态
 
-当前没有已建立的截图或视觉成果审批记录，候选截图与视觉成果审批状态为「未批准」。
+Phase 3 首页移动、平板和桌面候选截图已于 2026-11-10 由产品负责人在当前对话明确批准，批准版本为 `phase-3`，审批记录和证据见 §4。
 
-该状态只描述截图和视觉成果证据，不否定 [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md) 与 [DESIGN_TOKENS.md](DESIGN_TOKENS.md) 已记录的规范冻结确认；规范效力仍按各文件及 [AGENTS.md](../AGENTS.md) 权威表执行。
+其他截图与视觉成果仍为「未批准」；该状态只描述截图和视觉成果证据，不否定 [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md) 与 [DESIGN_TOKENS.md](DESIGN_TOKENS.md) 已记录的规范冻结确认，规范效力仍按各文件及 [AGENTS.md](../AGENTS.md) 权威表执行。
 
-`design/screenshots` 中已有文件均为候选或历史参考，不因文件存在、命名包含方向或曾被评审而自动成为已批准成果。
+`design/screenshots` 中的文件均为候选或历史参考，不因文件存在、命名包含方向或曾被评审而自动成为已批准成果。
 
-`design/approved` 当前没有已批准截图；不得预先创建批准文件、虚构审批记录或把候选截图标记为 `approved`。
+只有完成真实审批并登记证据的文件可以放入 `design/approved`；不得预先创建批准文件、虚构审批记录或把其他候选截图标记为 `approved`。
 
-当前也没有可据此声明完成的 `tokens.css`、共享组件实现或页面代码；本文件只建立审批机制，不表示设计或开发已经完成。
+本文件只记录审批机制与视觉证据状态，不记录工程进度；共享组件和页面的实际完成范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准，截图未获批准不影响已确认规范的效力。
 
 ## 2. 候选证据组织
 
@@ -34,7 +34,20 @@ Phase 3 首页候选截图已生成于 `design/screenshots/phase-3/home-390.png`
 
 ## 4. 审批记录
 
-当前无截图或视觉成果审批记录。
+### A-01：Phase 3 首页三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-10 当前对话明确批准 |
+| 审批日期 | 2026-11-10 |
+| 设计版本 | `phase-3` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认 Phase 3 首页在移动、平板和桌面视口的候选视觉成果 |
+| 对应规范文件 | [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md)、[DESIGN_TOKENS.md](DESIGN_TOKENS.md)、[HOMEPAGE_SPEC.md](HOMEPAGE_SPEC.md)、[SKILL_CARD_SPEC.md](SKILL_CARD_SPEC.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
+| 候选证据 | [home-390.png](../design/screenshots/phase-3/home-390.png)、[home-768.png](../design/screenshots/phase-3/home-768.png)、[home-1200.png](../design/screenshots/phase-3/home-1200.png) |
+| 批准证据 | [home-390.png](../design/approved/phase-3/home-390.png)、[home-768.png](../design/approved/phase-3/home-768.png)、[home-1200.png](../design/approved/phase-3/home-1200.png) |
+| 影响范围 | 仅首页 `/` 的 390px、768px、1200px 视口正常状态 |
+| 后续限制 | 不代表其他页面、交互状态、后台、工程功能或完整可访问性验收已获批准；后续视觉变更须建立新版本和审批记录 |
 
 后续获批时追加一条包含以下全部字段的记录，不得用空白记录、占位人名、占位日期或占位版本冒充批准：
 
@@ -69,8 +82,11 @@ Phase 3 首页候选截图已生成于 `design/screenshots/phase-3/home-390.png`
 
 ## 7. 已完成处理记录
 
+以下记录保留对应日期的处理结果和当时状态，不作为当前工程进度来源；后续状态以各权威文件和 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
+
 | 编号 | 审批人与日期 | 变更原因 | 处理结果与对应规范文件 |
 |---|---|---|---|
+| D-10 | 产品负责人（当前对话明确批准），2026-11-10 | Phase 1 至 Phase 3 P0 完成及多项产品决策确认后，部分现行文档仍保留初始化状态和旧待确认描述 | 已同步 `AGENTS.md`、README、产品、架构、编码、设计方向、设计系统、首页、页面结构和 Skill 卡片规范；保留原始 MVP、历史研究和审批历史，不将候选截图标记为批准。新增状态归属与文档同步门槛，要求代码、阶段或决策变化时在同一任务内更新权威文档并检索旧状态词。本次只修正文档，不新增功能或改变已确认产品规则。 |
 | D-09 | 产品负责人（当前对话明确批准），2026-11-09 | `DESIGN_DIRECTION.md` §8 错引 `DESIGN_SYSTEM.md` §5 为共享组件清单 | 已将共享组件引用从 §5 修正为 §3；实际共享组件清单位于 §3。修改文件：[DESIGN_DIRECTION.md](DESIGN_DIRECTION.md) §8。本次仅修正文档引用，不涉及产品范围、设计 Token、UI 实现或截图批准。 |
 | D-06 | 产品负责人（当前对话明确批准），2026-11-09 | 冻结规范中的 `UI_SPEC` 现行引用、Token 回写旧指令及历史资料旧权威表述 | 已将 `HOMEPAGE_SPEC.md`、`DESIGN_DIRECTION.md`、`DESIGN_TOKENS.md`、`SKILL_CARD_SPEC.md` 中的现行引用替换为 `AGENTS.md` 指定的权威文件；已停止向 `DESIGN_SYSTEM.md` 回写 Token，Token 仅以 `DESIGN_TOKENS.md` 为准；历史研究和原型仅增加失效说明，未删除原文，旧参数与旧权威描述不得用于生产实现。本次未修改产品业务规则。 |
 | D-08 | 产品负责人（当前对话明确批准），2026-11-09 | README 设计导航、PRODUCT 锚点、Phase 2 前置范围和目录树过期 | 已更新设计文档导航并标记 `UI_SPEC.md` 仅作历史参考；PRODUCT 锚点已改为 `#10-待确认事项`，Phase 2 前置范围已改为第 1 至第 5 项及第 11 项，目录树已补充 `design/prototypes`。修改文件：[README.md](../README.md)。本次仅修正文档导航和说明，不涉及产品规则、技术实现或截图批准。 |

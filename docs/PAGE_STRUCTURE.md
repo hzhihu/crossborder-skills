@@ -4,7 +4,7 @@
 
 本文冻结 CrossBorder Skills Hub 纯 A「清晰的跨境业务工作台」方向下的前台与 Payload Admin 页面清单、模块顺序、功能边界、页面状态、数据责任和组件复用关系。
 
-本文适用于后续设计、开发、评审和验收。Phase 1 基础工程已经创建，但本文描述的产品页面、业务代码和业务测试尚未实现。
+本文适用于设计、开发、评审和验收。Phase 3 P0 公开页面已经实现，实际工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
 
 本文只组合既有产品、数据、架构和设计规则，不重新定义首页细节、SkillCard 字段、视觉 Token、数据库字段或采集解析算法。
 
@@ -91,7 +91,7 @@ Header 和 Footer 只显示已确认入口，当前导航具有可理解状态�
 
 公开查询 URL 使用 `q`、`category`、`platform`、`tool`、`tag`、`sort`、`page`；分类使用单个 slug，平台、工具、标签使用重复 slug 参数，页码从 1 开始。排序标识为 `latest`、`updated`、`stars`、`featured`，P1 `views` 未交付时不接受。默认 `latest` 和第 1 页可省略，空值不保留。
 
-搜索与筛选已于 2026-11-09 确认：关键词和不同维度之间使用 AND，平台、工具、标签多选维度内部使用 OR；分类单选，一级分类包含有效子分类，所有结果只包含 published Skill。筛选值格式、分页参数、变更条件后的页码处理、无效值和越界页处理仍待确认。
+搜索与筛选已于 2026-11-09 确认：关键词和不同维度之间使用 AND，平台、工具、标签多选维度内部使用 OR；分类单选，一级分类包含有效子分类，所有结果只包含 published Skill。筛选值格式、分页参数、变更条件后的页码处理、无效值和越界页处理均按本节已确认规则执行。
 
 普通分页适用于多页 Skill 资源列表，不使用无限滚动、自动加载或滚动监听；每页 12 个，默认 `published_at DESC → id DESC`，专题内分页不得改变管理员顺序。
 
@@ -167,7 +167,7 @@ SEO 标题依次由 `name_zh`、`name` 派生，描述依次由 `description_zh`
 
 加载使用分类网格骨架，无可公开分类时显示 EmptyState，查询失败显示失败与重试，停用分类不作为空数据或错误详情泄露。
 
-页面提供独立 Title、Description、Canonical URL 和 Open Graph；分类列表主路由按已确认索引策略进入 Sitemap，结构化数据待确认。
+页面提供独立 Title、Description、Canonical URL 和 Open Graph；分类列表主路由按已确认索引策略进入 Sitemap，结构化数据按 §13 的已确认规则执行。
 
 ### 5.5 分类详情 `/categories/[slug]`
 
@@ -183,7 +183,7 @@ SEO 标题依次由 `name_zh`、`name` 派生，描述依次由 `description_zh`
 
 加载保留分类上下文，零公开资源与筛选无结果分别显示，失败可重试且保留条件；不存在、停用或无公开资格的分类返回 404，不泄露后台分类资料。
 
-SEO 使用分类 `seo_title`、`seo_description` 及公开路由 Canonical URL，并提供 Open Graph 和已确认 Sitemap 条目；查询 URL 索引策略和结构化数据待确认。
+SEO 使用分类 `seo_title`、`seo_description` 及公开路由 Canonical URL，并提供 Open Graph 和已确认 Sitemap 条目；查询 URL 索引策略和结构化数据按 §13 的已确认规则执行。
 
 ### 5.6 专题列表 `/collections`
 
@@ -197,7 +197,7 @@ CollectionCard 只展示名称、简介和已有封面；无封面已确认为�
 
 加载使用稳定专题骨架，无已发布专题显示 EmptyState，失败提供重试；未发布专题不得进入数量、卡片或错误信息。
 
-页面提供独立 Title、Description、Canonical URL、Open Graph 和已确认 Sitemap 主路由，结构化数据待确认。
+页面提供独立 Title、Description、Canonical URL、Open Graph 和已确认 Sitemap 主路由，结构化数据按 §13 的已确认规则执行。
 
 ### 5.7 专题详情 `/collections/[slug]`
 
@@ -211,7 +211,7 @@ CollectionCard 只展示名称、简介和已有封面；无封面已确认为�
 
 加载保持专题与网格结构，无有效公开资源显示 EmptyState，失败可重试；不存在或未发布专题返回 404，专题关联不得泄露未发布 Skill。
 
-SEO 使用专题 `seo_title`、`seo_description`、发布时间、Canonical URL 和 Open Graph，并进入已确认 Sitemap；结构化数据待确认。
+SEO 使用专题 `seo_title`、`seo_description`、发布时间、Canonical URL 和 Open Graph，并进入已确认 Sitemap；结构化数据按 §13 的已确认规则执行。
 
 ### 5.8 搜索结果 `/search`
 
@@ -243,21 +243,17 @@ P0 范围与 [PRODUCT.md](PRODUCT.md) §7.1 一致，包含关键词结果、适
 
 路由必须返回真实 HTTP 404，页面设置 `noindex`，不进入 Sitemap；Canonical 和 Open Graph 按不存在页面处理，不提供不存在的公开资源 URL。
 
-## 6. 条件前台页面结构
+## 6. 条件及已确认前台页面结构
 
-以下结构仅在对应页面获批后生效，不构成当前交付承诺，也不得因预留结构新增 Header、Footer 或 Sitemap 入口。
+平台页面已确认不交付，以下平台结构仅保留为历史候选，不得据此创建 Header、Footer、路由或 Sitemap 入口；关于页面已确认交付，按 §6.3 执行。
 
-### 6.1 平台列表 `/platforms`（待确认）
+### 6.1 平台列表 `/platforms`（不交付）
 
-条件模块为 Header、面包屑、页面标题与说明、平台导航网格和 Footer，数据只包含有公开用途的平台及公开 Skill 数量，具体平台卡片字段和空平台显示规则待确认。
+历史候选模块为 Header、面包屑、页面标题与说明、平台导航网格和 Footer；第一版不创建该页面，也不定义平台卡片字段和空平台显示规则。
 
-主要操作仅为进入平台详情，复用全站导航、网格、EmptyState 和 LoadingState，不建立 SkillCard 变体；加载、空数据、失败和 SEO 按公开数据页通用规则验收。
+### 6.2 平台详情 `/platforms/[slug]`（不交付）
 
-### 6.2 平台详情 `/platforms/[slug]`（待确认）
-
-条件模块为 Header、面包屑、平台名称与说明、公开资源数量、SearchBox、FilterPanel、SkillGrid、Pagination 和 Footer，具体筛选与排序范围待确认。
-
-Skill 列表必须复用 SkillCard、SkillGrid 和普通分页，不存在或不可公开平台返回 404，其他状态与 SEO 遵循分类详情的同类规则。
+历史候选模块为 Header、面包屑、平台名称与说明、公开资源数量、SearchBox、FilterPanel、SkillGrid、Pagination 和 Footer；第一版不创建该页面，平台仅用于筛选和标识。
 
 ### 6.3 关于页面 `/about`
 
@@ -461,7 +457,7 @@ CrawlTasks.`status` 使用已确认的 `queued`、`running`、`succeeded`、`nee
 
 加载、空专题、空资源关系、校验失败、保存失败、发布失败和无权限分别反馈；Collections.`status` 使用已确认的 `draft`、`published`、`archived`，管理员可执行 `draft → published` 和 `published ⇄ archived`，不复用 Skill 审核状态。
 
-## 9. P1 与待确认后台视图
+## 9. P1 与范围边界后台视图
 
 ### 9.1 完整采集任务与日志（P1）
 
@@ -611,9 +607,9 @@ Robots.txt 不引导索引 Payload Admin，后台页面同时使用 `noindex`，
 
 搜索和列表查询页索引策略、Open Graph 默认图片来源与降级均已确认，不使用外部假图或未发布内容生成分享信息。
 
-## 14. 完整待确认项
+## 14. 决策与确认记录
 
-以下事项汇总既有专项和页面实施所需决策，未确认前按各文件规定的降级方式处理，不得由页面结构提前定案。
+本节保留原始问题编号和逐项确认记录。第 1 至第 33 项均已有确认结论，下列编号列表只记录原问题，不再表示当前待确认状态；现行规则以各项确认记录和对应专项权威文件为准，后续变更须重新审批。
 
 1. 第一版只公开 Skill，还是同时公开后台录入的 MCP Server、Agent、Workflow、Prompt 或 Tool，以及对应筛选和 ResourceTypeBadge 的使用范围。
 2. 是否增加 Skills.sh 等自动采集来源；当前 P0 仅确定公开 GitHub 导入。
@@ -678,7 +674,7 @@ P1 浏览统计按本文 §9.4 落在现有 `/skills` 的真实浏览量排序�
 
 [DESIGN_SYSTEM.md](DESIGN_SYSTEM.md) 仅提供共享组件清单和通用原则索引；Header、Footer 按 [HOMEPAGE_SPEC.md](HOMEPAGE_SPEC.md) 当前冻结入口执行，FilterPanel 资源类型条件按 [PRODUCT.md](PRODUCT.md) G-04 和本文条件规则执行。
 
-[DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) Phase 2 前置项需补充 Collections.`status` 与 CrawlTasks.`status` 枚举确认；本文件先标明两者为 P0 前置，未确认前相关生产实现与完成声明均不得提前。
+[DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) Phase 2 已记录 Collections.`status` 与 CrawlTasks.`status` 枚举确认及 P0 完成状态；后续状态变化须同步更新该文件 §1 和本文件相关规则。
 
 CategoryCard 的禁用和零资源规则按本文启用且符合父级条件的零资源分类显示真实 `0`、停用分类不公开的当前口径执行；[HOMEPAGE_SPEC.md](HOMEPAGE_SPEC.md) 只直接冻结首页，本文件冻结分类列表规则，不修改原 MVP。
 
@@ -702,7 +698,7 @@ P1 增强不得复制 P0 实体、页面或查询，不得让 P0 表单、公开
 - [ ] 首页严格遵循首页专项，P1 推荐未交付整区省略、已交付无有效配置显示空状态、有效配置显示真实公开卡片。
 - [ ] Skill 列表、分类详情、专题详情、搜索和详情相关推荐复用同一 SkillCard、SkillGrid 与骨架，无页面专属卡片字段。
 - [ ] 搜索、筛选、排序和分页使用同一公开查询，刷新、分享、前进和后退恢复已确认 URL 状态，普通分页无无限滚动。
-- [ ] `/search` 使用首页专项确认的 `q` 保留关键词；其余 URL 参数、AND 或 OR、多选或单选、页码处理、无效值、越界页和排序未获批前不定案，公开查询安全且不泄露后台值。
+- [ ] `/search` 使用已确认的 URL 参数、AND 或 OR、多选或单选、页码处理、无效值、越界页和排序规则，公开查询安全且不泄露后台值。
 - [ ] 空关键词、无公开数据、筛选无结果、加载、失败和重试状态可区分，重试不丢失条件且不会无限自动执行。
 - [ ] 所有公开页面、统计、分页总数、关联推荐和专题资源只包含允许公开内容，未发布与归档内容不可见且不可推断。
 - [ ] 不存在或不可公开的 Skill、分类和专题返回真实 404，Skill 待审核更新有旧公开版本时继续展示 Skills 当前公开字段，不存在任何公开版本才返回 404，且不泄露后台数据并设置 `noindex`。

@@ -1,15 +1,26 @@
 import type { CollectionConfig } from 'payload'
 
+import { queueCreatedCrawlTask, retryCrawlTask, validateCrawlTask } from '../modules/crawler/tasks.ts'
 import { adminWriteOnly, preventHardDelete } from './access.ts'
 
 export const CrawlTasks: CollectionConfig = {
     slug: 'crawlTasks',
-    admin: { useAsTitle: 'source_url' },
+    admin: {
+        components: { edit: { beforeDocumentControls: ['/components/admin/CrawlActions#RetryCrawlTaskButton'] } },
+        defaultColumns: ['id', 'source_url', 'task_type', 'status', 'createdAt', 'completed_at'],
+        useAsTitle: 'source_url',
+    },
     access: {
         ...adminWriteOnly,
         delete: () => false,
     },
-    hooks: { beforeDelete: [preventHardDelete] },
+    endpoints: [{ handler: retryCrawlTask, method: 'post', path: '/:id/retry' }],
+    indexes: [{ fields: ['retry_of'], unique: true }],
+    hooks: {
+        afterChange: [queueCreatedCrawlTask],
+        beforeDelete: [preventHardDelete],
+        beforeValidate: [validateCrawlTask],
+    },
     fields: [
         { name: 'source_url', type: 'text', required: true },
         { name: 'repository_path', type: 'text' },
@@ -46,7 +57,7 @@ export const CrawlTasks: CollectionConfig = {
                 { label: '执行失败', value: 'failed' },
             ],
         },
-        { name: 'retry_of', type: 'relationship', relationTo: 'crawlTasks' },
+        { name: 'retry_of', type: 'relationship', relationTo: 'crawlTasks', index: false },
         { name: 'result', type: 'json' },
         { name: 'error_message', type: 'textarea' },
         { name: 'started_at', type: 'date' },

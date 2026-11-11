@@ -136,7 +136,7 @@ P1 AI 建议使用 Skills.`ai_suggestions` JSON 独立保存中文名称、简�
 | skill | relationship | 可选的主关联 Skill；单任务多 Skill 结果同时记录在 result.skills |
 | task_type | enum | 采集、解析、AI、同步等任务类型 |
 | status | enum | queued、running、succeeded、needs_review、failed |
-| retry_of | relationship | 可选，指向被重试的 CrawlTask；每次重试新增任务并保留原记录 |
+| retry_of | relationship | 可选且唯一，指向被重试的 CrawlTask；每个任务最多有一个直接重试，每次重试新增任务并保留原记录 |
 | result | JSON | skills 数组记录 created、updated、unchanged；errors 数组记录 code、message、repository_path、retryable |
 | error_message | text | 失败原因 |
 | started_at | timestamp | 开始时间 |
@@ -163,7 +163,7 @@ P1 AI 建议使用 Skills.`ai_suggestions` JSON 独立保存中文名称、简�
 
 Media 使用 Payload Upload Collection 统一承载 Skill 图标、分类图标和 P1 专题封面。开发默认本地存储，生产默认 S3；两种环境均可通过环境配置切换 `local` 或 `s3`，数据库不保存 Base64 图片。
 
-生产使用本地存储时必须配置持久化目录和备份；凭据只通过环境配置提供。仅允许 PNG、JPEG、WebP，单文件最大 2 MB，上传时同时校验真实 MIME 类型和扩展名；不允许 SVG、GIF。图标建议正方形，专题封面建议 1200 × 630，缺失时使用统一降级，不抓取外部图片补位。
+生产使用本地存储时必须配置持久化目录；备份与恢复已确认移到后续版本。凭据只通过环境配置提供。仅允许 PNG、JPEG、WebP，单文件最大 2 MB，上传时同时校验真实 MIME 类型和扩展名；不允许 SVG、GIF。图标建议正方形，专题封面建议 1200 × 630，缺失时使用统一降级，不抓取外部图片补位。
 
 ## 2.10 Users
 

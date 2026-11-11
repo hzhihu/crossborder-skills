@@ -114,6 +114,7 @@ export interface Config {
   user: User;
   jobs: {
     tasks: {
+      crawlSkill: TaskCrawlSkill;
       systemHealthCheck: TaskSystemHealthCheck;
       inline: {
         input: unknown;
@@ -426,7 +427,7 @@ export interface PayloadJob {
     | {
         executedAt: string;
         completedAt: string;
-        taskSlug: 'inline' | 'systemHealthCheck';
+        taskSlug: 'inline' | 'crawlSkill' | 'systemHealthCheck';
         taskID: string;
         input?:
           | {
@@ -459,7 +460,7 @@ export interface PayloadJob {
         id?: string | null;
       }[]
     | null;
-  taskSlug?: ('inline' | 'systemHealthCheck') | null;
+  taskSlug?: ('inline' | 'crawlSkill' | 'systemHealthCheck') | null;
   queue?: string | null;
   waitUntil?: string | null;
   processing?: boolean | null;
@@ -831,6 +832,16 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskCrawlSkill".
+ */
+export interface TaskCrawlSkill {
+  input: {
+    taskId: number;
+  };
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -40,7 +40,7 @@
 | EmptyState / LoadingState / ErrorState | 区分空数据、筛选无结果、加载和请求失败 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) 及对应页面专项 |
 | MarkdownRenderer | 安全渲染已确认公开的 Markdown 内容 | [PRODUCT.md](PRODUCT.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
 
-共享组件的实际文件尚未建立，本清单不表示组件、样式文件或工程已经实现。
+本清单只定义共享职责，不代替实现进度记录；实际组件和工程完成范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 及 `src/components` 为准。
 
 ## 4. 通用交互与可访问性约束
 
@@ -50,7 +50,7 @@
 
 加载失败应提供明确反馈和恢复入口，筛选无结果应保留条件并提供清除入口，空数据不得误报为失败。
 
-移动筛选使用全站共享且可明确关闭的抽屉或弹层，具体形式待确认；关闭后保留已选条件并按专项规则管理焦点。
+移动筛选使用全站共享且可明确关闭的右侧抽屉；关闭后保留已选条件，焦点返回筛选触发按钮，并按专项规则防止背景误操作。
 
 键盘顺序、焦点样式、触控目标、颜色对比度、非文本对比度和 reduced motion 按 [DESIGN_TOKENS.md](DESIGN_TOKENS.md) 与对应专项规范验收，本文不另设量化标准。
 

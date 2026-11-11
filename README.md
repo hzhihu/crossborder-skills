@@ -6,9 +6,11 @@ CrossBorder Skills Hub 是面向跨境电商业务场景的 AI Skills 资源发�
 
 ## 当前状态
 
-Phase 1 工程初始化、Phase 2 P0 核心数据模型和 Phase 3 P0 前台页面已完成并通过实际验证。
+Phase 1 工程初始化、Phase 2 P0 核心数据模型和 Phase 3 P0 前台页面已完成并通过实际验证。Phase 4 P0 采集核心代码已实现，但真实公开 GitHub 成功采集尚未完成，不能标记为 Phase 4 验收通过。
 
-当前包含核心 Collections、状态与发布约束、历史版本、重试关系、Payload Media、本地/S3 可选存储、公开首页、Skill 列表与详情、分类、专题、搜索、关于、SEO、响应式页面、Docker Compose、Jobs Worker 和 CI。GitHub 或 Skills.sh 采集、审核工作台、AI 和 P1 增强能力尚未交付。
+当前包含核心 Collections、状态与发布约束、历史版本、Payload Media、本地/S3 可选存储、公开首页、Skill 列表与详情、分类、专题、搜索、关于、SEO、响应式页面、Docker Compose、Jobs Worker 和 CI。GitHub 与 Skills.sh 地址解析、公开仓库读取、多 Skill 发现、Frontmatter 解析、重复检测、任务重试和重新采集已实施；审核工作台、AI 和 P1 增强能力尚未交付。
+
+真实 Worker 已验证任务入队及 GitHub 403 失败记录；当前共享 IP 的未认证 GitHub API 请求受到限流，需要可用配额或配置可选 `GITHUB_TOKEN` 后完成真实成功采集与 Skills.sh 验收。
 
 原始需求保留在 [第一版产品与技术方案](docs/crossBorder_skills_hub_mvp_v1.md)，本文档及后续规范均不替代原始需求。
 
@@ -46,7 +48,7 @@ docker run --rm -v "$PWD":/app -w /app node:24.22.1-alpine npm test
 docker run --rm -e PAYLOAD_SECRET=development-only -e DATABASE_URL=postgresql://payload:payload@localhost:5432/payload -v "$PWD":/app -w /app node:24.22.1-alpine npm run build
 ```
 
-Vitest 覆盖配置、SEO、公开查询参数、安装命令和 Markdown 安全；Playwright 覆盖公开导航、搜索、移动菜单、筛选抽屉、焦点返回和三档视口。候选截图保存在 `design/screenshots/phase-3`，不代表设计审批已通过。
+Vitest 覆盖配置、SEO、公开查询参数、安装命令、Markdown 安全和采集核心；Playwright 覆盖公开导航、搜索、移动菜单、筛选抽屉、焦点返回和三档视口。Phase 3 首页三个视口的候选截图保存在 `design/screenshots/phase-3`，批准证据与审批记录分别保存在 `design/approved/phase-3` 和 `docs/DESIGN_APPROVAL.md`；其他候选截图仍不代表设计审批已通过。
 
 在本机通过 Playwright 官方镜像执行浏览器检查：
 
@@ -73,7 +75,7 @@ docker run --rm -e PLAYWRIGHT_BASE_URL=http://host.docker.internal:3000 -e PLAYW
 | [开发计划](docs/DEVELOPMENT_PLAN.md) | 按六个阶段安排任务、依赖和阶段验收 | 所有参与者 |
 | [编码规范](docs/CODING_RULES.md) | 定义 TypeScript、Next.js、Payload、测试和 Git 规范 | 开发、审查者 |
 | [验收标准](docs/ACCEPTANCE.md) | 提供功能、安全、SEO、响应式和交付验收条件 | 产品、开发、测试 |
-| [部署说明](docs/DEPLOYMENT.md) | 约定后续 Docker Compose 部署与备份交付内容 | 开发、运维 |
+| [部署说明](docs/DEPLOYMENT.md) | 约定 Docker Compose 部署与交付内容；备份移到后续版本 | 开发、运维 |
 
 ## 目录说明
 
@@ -88,14 +90,16 @@ docker run --rm -e PLAYWRIGHT_BASE_URL=http://host.docker.internal:3000 -e PLAYW
 │   ├── approved/            # 已确认设计成果
 │   ├── components/          # 共享组件设计
 │   └── prototypes/          # 历史视觉原型，仅作研究参考
-├── src/                     # Next.js、Payload 配置与后续业务源码
+├── src/                     # Next.js、Payload 配置与业务源码
 └── tests/
-    ├── e2e/                 # 后续业务端到端测试，当前为空
+    ├── e2e/                 # 公开页面端到端测试
     └── visual/              # 后续视觉测试，当前为空
 ```
 
 ## 后续实施入口
 
-后续工程实施应先从 [开发计划](docs/DEVELOPMENT_PLAN.md) 的 Phase 1 开始，并在 Phase 1 后、Phase 2 数据模型定稿前处理影响数据模型的[待确认事项](docs/PRODUCT.md#10-待确认事项)第 1 至第 5 项及第 11 项。
+当前继续完成 [开发计划](docs/DEVELOPMENT_PLAN.md) Phase 4 的真实公开 GitHub 与 Skills.sh 成功采集验收；实际完成范围以该文件 §1 为准。
 
-实施完成前，不应把本文档中的目标、规范或验收条件视为已经实现的功能。
+产品事项的主要确认结论见 [产品规范](docs/PRODUCT.md#10-待确认事项)，仍开放的生产部署和协作事项见 [部署说明](docs/DEPLOYMENT.md) 与 [编码规范](docs/CODING_RULES.md)。
+
+本文档中的目标、规范或验收条件不代表对应功能已经实现；候选截图也不代表视觉审批已通过。
