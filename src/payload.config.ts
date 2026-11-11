@@ -57,8 +57,17 @@ export default buildConfig({
     admin: {
         user: Users.slug,
         components: {
-            beforeNavLinks: ['/components/admin/ReviewNavLink#ReviewNavLink'],
+            beforeNavLinks: [
+                '/components/admin/CrawlImportNavLink#CrawlImportNavLink',
+                '/components/admin/ReviewNavLink#ReviewNavLink',
+            ],
             views: {
+                dashboard: { Component: '/components/admin/DashboardView' },
+                import: {
+                    Component: '/components/admin/CrawlImportView',
+                    meta: { title: '资源导入' },
+                    path: '/import',
+                },
                 review: {
                     Component: '/components/admin/ReviewView',
                     meta: { title: '待审核工作台' },

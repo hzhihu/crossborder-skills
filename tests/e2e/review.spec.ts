@@ -2,6 +2,8 @@ import { createHash } from 'node:crypto'
 
 import { expect, test } from '@playwright/test'
 
+import { getDashboardRecentStart } from '../../src/modules/skills/dashboard'
+
 const adminEmail = process.env.PAYLOAD_ADMIN_EMAIL
 const adminPassword = process.env.PAYLOAD_ADMIN_PASSWORD
 
@@ -22,6 +24,35 @@ test('admin can publish, reject, resubmit and review an update', async ({ page, 
             page.waitForURL((url) => url.pathname === '/admin'),
             page.locator('button[type="submit"]').click(),
         ])
+
+        await expect(page.getByRole('heading', { name: '运营概况', exact: true })).toBeVisible()
+        const countRequests = await Promise.all([
+            page.request.get('/api/skills?limit=0&where[resource_type][equals]=Skill'),
+            page.request.get('/api/skills?limit=0&where[resource_type][equals]=Skill&where[status][equals]=published'),
+            page.request.get('/api/skills?limit=0&where[resource_type][equals]=Skill&where[status][equals]=pending'),
+            page.request.get('/api/crawlTasks?limit=0&where[status][equals]=failed'),
+            page.request.get(`/api/skills?limit=0&where[resource_type][equals]=Skill&where[createdAt][greater_than_equal]=${getDashboardRecentStart()}`),
+        ])
+        const counts = await Promise.all(countRequests.map(async (response) => {
+            expect(response.ok()).toBe(true)
+            return (await response.json()).totalDocs
+        }))
+        const labels = ['Skill 总数', '已发布数', '待审核数', '采集失败数', '最近 7 天新增']
+        for (const [index, label] of labels.entries()) {
+            await expect(page.getByRole('link', { name: label, exact: true }).locator('strong')).toHaveText(String(counts[index]))
+        }
+        await expect(page.getByRole('heading', { name: '最近采集任务', exact: true })).toBeVisible()
+        await expect(page.getByRole('heading', { name: '最近发布资源', exact: true })).toBeVisible()
+
+        await page.goto('/admin/import')
+        await expect(page.getByRole('heading', { name: '资源导入', exact: true })).toBeVisible()
+        await expect(page.getByLabel('来源地址（必填）')).toBeVisible()
+        await expect(page.getByLabel('Status', { exact: true })).toHaveCount(0)
+        await page.getByLabel('来源地址（必填）').fill('https://github.com/acme/demo')
+        await page.getByLabel('子目录或文件路径（可选）').fill(`e2e/${suffix}/SKILL.md`)
+        await page.getByRole('button', { name: '创建异步采集任务', exact: true }).click()
+        await expect(page.getByText(/任务 \d+ 已创建并等待异步执行/)).toBeVisible()
+        await expect(page.getByRole('link', { name: '查看任务结果', exact: true })).toBeVisible()
 
         const categoryResponse = await page.request.post('/api/categories', {
             data: { is_active: true, name: `E2E 审核分类 ${suffix}`, slug: `e2e-review-category-${suffix}`, sort_order: 0 },

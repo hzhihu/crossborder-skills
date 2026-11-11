@@ -1,3 +1,4 @@
+import { DefaultTemplate } from '@payloadcms/next/templates'
 import Link from 'next/link'
 import type { AdminViewServerProps } from 'payload'
 
@@ -40,7 +41,8 @@ function ReviewPagination({ label, otherPage, otherParam, page, param, totalPage
     </nav>
 }
 
-export default async function ReviewView({ initPageResult: { req }, searchParams }: AdminViewServerProps) {
+export default async function ReviewView(props: AdminViewServerProps) {
+    const { initPageResult: { req, visibleEntities }, searchParams } = props
     if (!req.user) return <main style={{ padding: '2rem' }}><h1>待审核工作台</h1><p>需要管理员登录。</p></main>
 
     const pendingPage = getPage(searchParams?.pendingPage)
@@ -82,7 +84,8 @@ export default async function ReviewView({ initPageResult: { req }, searchParams
     ])
     const queue = [...pendingEntries, ...publishedEntries]
 
-    return <main style={{ margin: '0 auto', maxWidth: '1100px', padding: '2rem' }}>
+    return <DefaultTemplate {...props} visibleEntities={visibleEntities} viewType="review">
+        <main style={{ boxSizing: 'border-box', margin: '0 auto', maxWidth: '1100px', overflowWrap: 'anywhere', padding: '2rem', width: '100%' }}>
         <h1>待审核工作台</h1>
         <p>核对原始内容、来源和人工编辑内容后再发布。AI 建议尚未交付，不影响人工审核。</p>
         {!queue.length && <section style={sectionStyle}><p>当前页没有待审核 Skill 或待发布更新。</p></section>}
@@ -120,5 +123,6 @@ export default async function ReviewView({ initPageResult: { req }, searchParams
         <ReviewPagination label="待审核 Skill 分页" otherPage={updatePage} otherParam="updatePage" page={pending.page || 1} param="pendingPage" totalPages={pending.totalPages} />
         <h2>待发布更新（{updateIDs.length}）</h2>
         <ReviewPagination label="待发布更新分页" otherPage={pendingPage} otherParam="pendingPage" page={updatePage} param="updatePage" totalPages={updateTotalPages} />
-    </main>
+        </main>
+    </DefaultTemplate>
 }
