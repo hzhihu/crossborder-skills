@@ -16,7 +16,7 @@
 
 ## 3. 当前阶段边界
 
-Next.js 工程已经创建，Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0 和 Phase 5 P0 已完成；当前工程进度以 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) §1 为准。
+Next.js 工程已经创建，Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0、Phase 5 P0 和 Phase 6 已完成；公网发布移到后续实际发布时执行，当前工程进度以 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) §1 为准。
 
 工程实施必须按照 [DEVELOPMENT_PLAN.md](docs/DEVELOPMENT_PLAN.md) 的阶段和依赖推进；未收到当前阶段实施指令前，不提前实现后续阶段或 P1、P2 能力，不修改原始 MVP 文档。
 

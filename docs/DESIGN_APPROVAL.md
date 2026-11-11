@@ -4,6 +4,8 @@
 
 Phase 3 首页移动、平板和桌面候选截图已于 2026-11-10 由产品负责人在当前对话明确批准，批准版本为 `phase-3`，审批记录和证据见 §4。
 
+Phase 6 的 Skill 列表、Skill 详情、分类详情、专题详情、后台 Dashboard、Skill 管理列表、Skill 编辑表单、资源导入和待审核工作台已于 2026-11-11 逐项批准，审批记录为 A-02 至 A-10；每项批准范围与排除状态以对应记录为准。
+
 其他截图与视觉成果仍为「未批准」；该状态只描述截图和视觉成果证据，不否定 [DESIGN_DIRECTION.md](DESIGN_DIRECTION.md) 与 [DESIGN_TOKENS.md](DESIGN_TOKENS.md) 已记录的规范冻结确认，规范效力仍按各文件及 [AGENTS.md](../AGENTS.md) 权威表执行。
 
 `design/screenshots` 中的文件均为候选或历史参考，不因文件存在、命名包含方向或曾被评审而自动成为已批准成果。
@@ -21,6 +23,24 @@ Phase 3 首页移动、平板和桌面候选截图已于 2026-11-10 由产品负
 候选截图可以供评审和修改，但在完成真实审批前不得复制到 `design/approved`，不得作为已批准实现依据。
 
 Phase 3 首页候选截图已生成于 `design/screenshots/phase-3/home-390.png`、`home-768.png`、`home-1200.png`，对应移动、平板和桌面视口。候选实现依据 DESIGN_TOKENS、HOMEPAGE_SPEC、SKILL_CARD_SPEC 和 PAGE_STRUCTURE；这些截图只用于评审，未获批准，不得复制到 `design/approved`。
+
+Phase 6 Skill 列表候选截图已生成于 `design/screenshots/phase-6/skills-390.png`、`skills-768.png`、`skills-1200.png`，对应 `/skills` 的移动、平板和桌面正常状态。候选实现依据 DESIGN_TOKENS、SKILL_CARD_SPEC 和 PAGE_STRUCTURE；截图使用真实验收数据库，其中的验收名称、分类、标签和统计只用于布局评审，不作为内容批准。提交前已修复搜索按钮在较宽视口换行的问题。这些截图的批准状态以 A-02 为准。
+
+Phase 6 Skill 详情候选截图已生成于 `design/screenshots/phase-6/skill-detail-390.png`、`skill-detail-768.png`、`skill-detail-1200.png`，对应 `/skills/find-skills-e94f5319` 的移动、平板和桌面正常状态。候选实现依据 DESIGN_TOKENS、SKILL_CARD_SPEC 和 PAGE_STRUCTURE；截图中的真实采集内容、人工验收文案和相关推荐数据只用于布局评审，不作为内容批准。这些截图的批准状态以 A-03 为准。
+
+Phase 6 分类详情候选截图已生成于 `design/screenshots/phase-6/category-detail-390.png`、`category-detail-768.png`、`category-detail-1200.png`，对应 `/categories/crawl-1794366011420` 的移动、平板和桌面正常状态。候选实现依据 DESIGN_TOKENS、SKILL_CARD_SPEC 和 PAGE_STRUCTURE；截图中的验收分类、标签和资源数据只用于布局评审，不作为内容批准。这些截图的批准状态以 A-04 为准。
+
+Phase 6 专题详情候选截图已生成于 `design/screenshots/phase-6/collection-detail-390.png`、`collection-detail-768.png`、`collection-detail-1200.png`，对应 `/collections/verification-1794272579419` 的移动、平板和桌面正常状态。候选实现依据 DESIGN_TOKENS、SKILL_CARD_SPEC 和 PAGE_STRUCTURE；截图中的验收专题和资源数据只用于布局评审，不作为内容批准。这些截图的批准状态以 A-05 为准。
+
+Phase 6 后台 Dashboard 候选截图已生成于 `design/screenshots/phase-6/admin-dashboard-390.png`、`admin-dashboard-768.png`、`admin-dashboard-1200.png`，对应 `/admin` 的移动、平板和桌面正常状态。初次检查发现默认 Collections 页面不满足 F-13，已先补齐真实统计、最近采集任务和最近发布资源，再生成候选图。候选实现依据 PAGE_STRUCTURE 和 Payload Admin 现有视觉规范；截图中的验收数据只用于布局评审，不作为内容批准。这些截图的批准状态以 A-06 为准。
+
+Phase 6 Skill 管理列表候选截图已生成于 `design/screenshots/phase-6/admin-skills-390.png`、`admin-skills-768.png`、`admin-skills-1200.png`，对应 `/admin/collections/skills` 的移动、平板和桌面正常状态。候选实现依据 PAGE_STRUCTURE 和 Payload Admin 现有视觉规范；截图中的归档验收数据只用于布局评审，不作为内容批准。这些截图的批准状态以 A-07 为准。
+
+Phase 6 Skill 编辑表单候选截图已生成于 `design/screenshots/phase-6/admin-skill-edit-390.png`、`admin-skill-edit-768.png`、`admin-skill-edit-1200.png`，对应 `/admin/collections/skills/28` 的移动、平板和桌面正常状态。候选实现依据 PAGE_STRUCTURE 和 Payload Admin 现有视觉规范；长截图包含完整字段与原始内容编辑区，真实采集及人工验收内容只用于布局评审，不作为内容批准。这些截图的批准状态以 A-08 为准。
+
+Phase 6 资源导入候选截图已生成于 `design/screenshots/phase-6/admin-crawl-create-390.png`、`admin-crawl-create-768.png`、`admin-crawl-create-1200.png`，对应 `/admin/import` 的移动、平板和桌面空白表单正常状态。初次检查发现 CrawlTask 默认新建页暴露内部任务字段且不符合 §8.5，已改为独立简化导入页，并补齐 Payload Admin 导航模板。候选实现依据 PAGE_STRUCTURE 和 Payload Admin 现有视觉规范。这些截图的批准状态以 A-09 为准。
+
+Phase 6 待审核工作台候选截图已生成于 `design/screenshots/phase-6/admin-review-390.png`、`admin-review-768.png`、`admin-review-1200.png`，对应 `/admin/review` 的移动、平板和桌面有待审核资源及待发布更新状态。候选实现依据 PAGE_STRUCTURE 和 Payload Admin 现有视觉规范；提交前已修复长来源地址导致的移动端页面横向溢出。截图使用可清理的布局验收资源及既有验收版本，只用于布局评审，不作为内容批准。这些截图尚未批准，不得复制到 `design/approved`。
 
 ## 3. 真实审批流程
 
@@ -48,6 +68,141 @@ Phase 3 首页候选截图已生成于 `design/screenshots/phase-3/home-390.png`
 | 批准证据 | [home-390.png](../design/approved/phase-3/home-390.png)、[home-768.png](../design/approved/phase-3/home-768.png)、[home-1200.png](../design/approved/phase-3/home-1200.png) |
 | 影响范围 | 仅首页 `/` 的 390px、768px、1200px 视口正常状态 |
 | 后续限制 | 不代表其他页面、交互状态、后台、工程功能或完整可访问性验收已获批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-02：Phase 6 Skill 列表三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认 Skill 列表在移动、平板和桌面视口的正常状态视觉成果；提交前修复搜索按钮换行 |
+| 对应规范文件 | [DESIGN_TOKENS.md](DESIGN_TOKENS.md)、[SKILL_CARD_SPEC.md](SKILL_CARD_SPEC.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
+| 候选证据 | [skills-390.png](../design/screenshots/phase-6/skills-390.png)、[skills-768.png](../design/screenshots/phase-6/skills-768.png)、[skills-1200.png](../design/screenshots/phase-6/skills-1200.png) |
+| 批准证据 | [skills-390.png](../design/approved/phase-6/skills-390.png)、[skills-768.png](../design/approved/phase-6/skills-768.png)、[skills-1200.png](../design/approved/phase-6/skills-1200.png) |
+| 影响范围 | 仅 `/skills` 的 390px、768px、1200px 视口正常状态；验收数据不属于内容批准 |
+| 后续限制 | 不代表筛选抽屉、空结果、加载或失败状态、其他页面、完整可访问性或工程功能已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-03：Phase 6 Skill 详情三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认 Skill 详情在移动、平板和桌面视口的正常状态视觉成果 |
+| 对应规范文件 | [DESIGN_TOKENS.md](DESIGN_TOKENS.md)、[SKILL_CARD_SPEC.md](SKILL_CARD_SPEC.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
+| 候选证据 | [skill-detail-390.png](../design/screenshots/phase-6/skill-detail-390.png)、[skill-detail-768.png](../design/screenshots/phase-6/skill-detail-768.png)、[skill-detail-1200.png](../design/screenshots/phase-6/skill-detail-1200.png) |
+| 批准证据 | [skill-detail-390.png](../design/approved/phase-6/skill-detail-390.png)、[skill-detail-768.png](../design/approved/phase-6/skill-detail-768.png)、[skill-detail-1200.png](../design/approved/phase-6/skill-detail-1200.png) |
+| 影响范围 | `/skills/find-skills-e94f5319` 的 390px、768px、1200px 视口正常状态；真实采集内容、人工验收文案和相关推荐数据不属于内容批准 |
+| 后续限制 | 不代表复制反馈、无安装命令、无相关推荐等状态、其他页面、完整可访问性或工程功能已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-04：Phase 6 分类详情三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认分类详情在移动、平板和桌面视口的正常状态视觉成果 |
+| 对应规范文件 | [DESIGN_TOKENS.md](DESIGN_TOKENS.md)、[SKILL_CARD_SPEC.md](SKILL_CARD_SPEC.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
+| 候选证据 | [category-detail-390.png](../design/screenshots/phase-6/category-detail-390.png)、[category-detail-768.png](../design/screenshots/phase-6/category-detail-768.png)、[category-detail-1200.png](../design/screenshots/phase-6/category-detail-1200.png) |
+| 批准证据 | [category-detail-390.png](../design/approved/phase-6/category-detail-390.png)、[category-detail-768.png](../design/approved/phase-6/category-detail-768.png)、[category-detail-1200.png](../design/approved/phase-6/category-detail-1200.png) |
+| 影响范围 | `/categories/crawl-1794366011420` 的 390px、768px、1200px 视口正常状态；验收分类、标签和资源数据不属于内容批准 |
+| 后续限制 | 不代表筛选抽屉、空分类、筛选无结果、分页状态、其他页面、完整可访问性或工程功能已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-05：Phase 6 专题详情三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认专题详情在移动、平板和桌面视口的正常状态视觉成果 |
+| 对应规范文件 | [DESIGN_TOKENS.md](DESIGN_TOKENS.md)、[SKILL_CARD_SPEC.md](SKILL_CARD_SPEC.md)、[PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) |
+| 候选证据 | [collection-detail-390.png](../design/screenshots/phase-6/collection-detail-390.png)、[collection-detail-768.png](../design/screenshots/phase-6/collection-detail-768.png)、[collection-detail-1200.png](../design/screenshots/phase-6/collection-detail-1200.png) |
+| 批准证据 | [collection-detail-390.png](../design/approved/phase-6/collection-detail-390.png)、[collection-detail-768.png](../design/approved/phase-6/collection-detail-768.png)、[collection-detail-1200.png](../design/approved/phase-6/collection-detail-1200.png) |
+| 影响范围 | `/collections/verification-1794272579419` 的 390px、768px、1200px 视口正常状态；验收专题和资源数据不属于内容批准 |
+| 后续限制 | 不代表空专题、分页、异常状态、P1 增强管理、其他页面、完整可访问性或工程功能已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-06：Phase 6 后台 Dashboard 三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 补齐 F-13 自定义运营概况后，确认真实统计、最近采集任务和最近发布资源在三个视口的正常状态视觉成果 |
+| 对应规范文件 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) §8.2、Payload Admin 现有视觉规范 |
+| 候选证据 | [admin-dashboard-390.png](../design/screenshots/phase-6/admin-dashboard-390.png)、[admin-dashboard-768.png](../design/screenshots/phase-6/admin-dashboard-768.png)、[admin-dashboard-1200.png](../design/screenshots/phase-6/admin-dashboard-1200.png) |
+| 批准证据 | [admin-dashboard-390.png](../design/approved/phase-6/admin-dashboard-390.png)、[admin-dashboard-768.png](../design/approved/phase-6/admin-dashboard-768.png)、[admin-dashboard-1200.png](../design/approved/phase-6/admin-dashboard-1200.png) |
+| 影响范围 | `/admin` 的 390px、768px、1200px 视口正常状态；验收数据不属于内容批准 |
+| 后续限制 | 不代表其他后台页面、空数据状态、完整可访问性或所有工程功能已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-07：Phase 6 Skill 管理列表三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认 Skill 管理列表在移动、平板和桌面视口的正常状态视觉成果 |
+| 对应规范文件 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md)、Payload Admin 现有视觉规范 |
+| 候选证据 | [admin-skills-390.png](../design/screenshots/phase-6/admin-skills-390.png)、[admin-skills-768.png](../design/screenshots/phase-6/admin-skills-768.png)、[admin-skills-1200.png](../design/screenshots/phase-6/admin-skills-1200.png) |
+| 批准证据 | [admin-skills-390.png](../design/approved/phase-6/admin-skills-390.png)、[admin-skills-768.png](../design/approved/phase-6/admin-skills-768.png)、[admin-skills-1200.png](../design/approved/phase-6/admin-skills-1200.png) |
+| 影响范围 | `/admin/collections/skills` 的 390px、768px、1200px 视口正常状态及移动端表格横向浏览；归档验收数据不属于内容批准 |
+| 后续限制 | 不代表筛选展开、批量操作菜单、编辑页面、其他后台页面或完整可访问性已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-08：Phase 6 Skill 编辑表单三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认 Skill 编辑表单完整字段在移动、平板和桌面视口的正常状态视觉成果 |
+| 对应规范文件 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md)、Payload Admin 现有视觉规范 |
+| 候选证据 | [admin-skill-edit-390.png](../design/screenshots/phase-6/admin-skill-edit-390.png)、[admin-skill-edit-768.png](../design/screenshots/phase-6/admin-skill-edit-768.png)、[admin-skill-edit-1200.png](../design/screenshots/phase-6/admin-skill-edit-1200.png) |
+| 批准证据 | [admin-skill-edit-390.png](../design/approved/phase-6/admin-skill-edit-390.png)、[admin-skill-edit-768.png](../design/approved/phase-6/admin-skill-edit-768.png)、[admin-skill-edit-1200.png](../design/approved/phase-6/admin-skill-edit-1200.png) |
+| 影响范围 | `/admin/collections/skills/28` 的 390px、768px、1200px 视口正常状态；真实采集及人工验收内容不属于内容批准 |
+| 后续限制 | 不代表保存反馈、校验错误、重新采集弹窗、其他后台页面或完整可访问性已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-09：Phase 6 资源导入三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 将默认 CrawlTask 新建页改为符合 §8.5 的独立简化导入页后，确认三个视口的空白表单视觉成果 |
+| 对应规范文件 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) §8.5、Payload Admin 现有视觉规范 |
+| 候选证据 | [admin-crawl-create-390.png](../design/screenshots/phase-6/admin-crawl-create-390.png)、[admin-crawl-create-768.png](../design/screenshots/phase-6/admin-crawl-create-768.png)、[admin-crawl-create-1200.png](../design/screenshots/phase-6/admin-crawl-create-1200.png) |
+| 批准证据 | [admin-crawl-create-390.png](../design/approved/phase-6/admin-crawl-create-390.png)、[admin-crawl-create-768.png](../design/approved/phase-6/admin-crawl-create-768.png)、[admin-crawl-create-1200.png](../design/approved/phase-6/admin-crawl-create-1200.png) |
+| 影响范围 | `/admin/import` 的 390px、768px、1200px 视口空白表单正常状态 |
+| 后续限制 | 不代表提交中、创建成功、校验失败、任务执行状态、其他后台页面或完整可访问性已获视觉批准；后续视觉变更须建立新版本和审批记录 |
+
+### A-10：Phase 6 待审核工作台三个视口
+
+| 字段 | 审批内容 |
+|---|---|
+| 审批人 | 产品负责人，2026-11-11 当前对话明确批准 |
+| 审批日期 | 2026-11-11 |
+| 设计版本 | `phase-6` |
+| 审批结果 | 批准 |
+| 变更原因 | 确认待审核资源及待发布更新在三个视口的视觉成果；提交前修复长来源地址导致的移动端横向溢出 |
+| 对应规范文件 | [PAGE_STRUCTURE.md](PAGE_STRUCTURE.md) §8.7、Payload Admin 现有视觉规范 |
+| 候选证据 | [admin-review-390.png](../design/screenshots/phase-6/admin-review-390.png)、[admin-review-768.png](../design/screenshots/phase-6/admin-review-768.png)、[admin-review-1200.png](../design/screenshots/phase-6/admin-review-1200.png) |
+| 批准证据 | [admin-review-390.png](../design/approved/phase-6/admin-review-390.png)、[admin-review-768.png](../design/approved/phase-6/admin-review-768.png)、[admin-review-1200.png](../design/approved/phase-6/admin-review-1200.png) |
+| 影响范围 | `/admin/review` 的 390px、768px、1200px 视口有待审核资源及待发布更新状态；布局验收资源及既有验收版本不属于内容批准 |
+| 后续限制 | 不代表原始内容展开、确认弹窗、空队列、操作反馈、其他异常状态或完整可访问性已获视觉批准；后续视觉变更须建立新版本和审批记录 |
 
 后续获批时追加一条包含以下全部字段的记录，不得用空白记录、占位人名、占位日期或占位版本冒充批准：
 

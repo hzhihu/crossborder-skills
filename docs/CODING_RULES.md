@@ -65,7 +65,10 @@
 
 ## 7. Git 规范
 
-- 分支模型、提交信息格式和合并流程待确认，未确认前保持小而完整的修改。
+- 分支模型、提交信息格式和合并流程已于 2026-11-11 由产品负责人确认。
+- 使用 `main` 作为主分支；每项工作使用短期 `feat/*`、`fix/*`、`docs/*` 或 `test/*` 分支。
+- 提交信息使用 Conventional Commits，例如 `feat: add skill review workflow`、`fix: prevent duplicate skill versions` 和 `docs: update deployment records`。
+- 通过 Pull Request 使用 Squash and merge 合并；不直接向 `main` 提交，不强制推送共享分支。
 - 每个提交只包含一个可说明的目的，不混入无关格式化或重构。
 - 不提交环境密钥、Token、生产数据、本地依赖或构建产物。
 - 原始 MVP 文档不得修改或删除，空目录使用 `.gitkeep` 保留。
@@ -74,6 +77,6 @@
 
 ## 8. 当前实施边界
 
-Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0 和 Phase 5 P0 已完成，当前工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
+Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0、Phase 5 P0 和 Phase 6 已完成，公网发布移到后续实际发布时执行。当前工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
 
 后续修改仍须按开发计划推进，不得提前实现后续阶段、P1、P2 或其他未确认业务。

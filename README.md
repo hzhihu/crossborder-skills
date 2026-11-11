@@ -6,7 +6,7 @@ CrossBorder Skills Hub 是面向跨境电商业务场景的 AI Skills 资源发�
 
 ## 当前状态
 
-Phase 1 工程初始化、Phase 2 P0 核心数据模型、Phase 3 P0 前台页面、Phase 4 P0 公开来源采集和 Phase 5 P0 人工审核已完成并通过实际验证。真实 Worker 已成功采集公开 GitHub 与 Skills.sh 资源，重复导入未创建重复资源或版本；人工编辑、发布、驳回重提及待审核版本隔离均已验证。
+Phase 1 工程初始化、Phase 2 P0 核心数据模型、Phase 3 P0 前台页面、Phase 4 P0 公开来源采集、Phase 5 P0 人工审核和 Phase 6 整体测试与部署已完成并通过实际验证。真实 Worker 已成功采集公开 GitHub 与 Skills.sh 资源，重复导入未创建重复资源或版本；人工编辑、发布、驳回重提及待审核版本隔离均已验证。本机隔离生产模式部署验收已完成，公网发布移到后续实际发布时执行，不代表当前已经公网上线。
 
 当前包含核心 Collections、状态与发布约束、历史版本、Payload Media、本地/S3 可选存储、公开首页、Skill 列表与详情、分类、专题、搜索、关于、SEO、响应式页面、Docker Compose、Jobs Worker 和 CI。GitHub 与 Skills.sh 地址解析、公开仓库读取、多 Skill 发现、Frontmatter 解析、重复检测、任务重试和重新采集已实施；`/admin/review` 提供人工审核、编辑入口、发布和驳回，AI 和 P1 增强能力尚未交付。
 
@@ -45,7 +45,7 @@ docker run --rm -v "$PWD":/app -w /app node:24.22.1-alpine npm ci
 docker run --rm -v "$PWD":/app -w /app node:24.22.1-alpine npm run lint
 docker run --rm -v "$PWD":/app -w /app node:24.22.1-alpine npm run typecheck
 docker run --rm -v "$PWD":/app -w /app node:24.22.1-alpine npm test
-docker run --rm -e PAYLOAD_SECRET=development-only -e DATABASE_URL=postgresql://payload:payload@localhost:5432/payload -v "$PWD":/app -w /app node:24.22.1-alpine npm run build
+docker run --rm -e PAYLOAD_SECRET=development-only -e DATABASE_URL=postgresql://payload:payload@localhost:5432/payload -e STORAGE_DRIVER=local -v "$PWD":/app -w /app node:24.22.1-alpine npm run build
 ```
 
 Vitest 覆盖配置、SEO、公开查询参数、安装命令、Markdown 安全和采集核心；Playwright 覆盖公开导航、搜索、移动菜单、筛选抽屉、焦点返回和三档视口。Phase 3 首页三个视口的候选截图保存在 `design/screenshots/phase-3`，批准证据与审批记录分别保存在 `design/approved/phase-3` 和 `docs/DESIGN_APPROVAL.md`；其他候选截图仍不代表设计审批已通过。
@@ -98,8 +98,8 @@ docker run --rm -e PLAYWRIGHT_BASE_URL=http://host.docker.internal:3000 -e PLAYW
 
 ## 后续实施入口
 
-当前进入 [开发计划](docs/DEVELOPMENT_PLAN.md) Phase 6 整体测试与部署；实际完成范围以该文件 §1 为准。
+[开发计划](docs/DEVELOPMENT_PLAN.md) Phase 1 至 Phase 6 已完成；实际完成范围以该文件 §1 为准。后续实际发布时执行公网 Linux 主机、域名和公网网络配置，不自动启动 P1 或 P2。
 
-产品事项的主要确认结论见 [产品规范](docs/PRODUCT.md#10-待确认事项)，仍开放的生产部署和协作事项见 [部署说明](docs/DEPLOYMENT.md) 与 [编码规范](docs/CODING_RULES.md)。
+产品事项的主要确认结论见 [产品规范](docs/PRODUCT.md#10-待确认事项)，后续公网发布边界见 [部署说明](docs/DEPLOYMENT.md)，协作规则见 [编码规范](docs/CODING_RULES.md)。
 
 本文档中的目标、规范或验收条件不代表对应功能已经实现；候选截图也不代表视觉审批已通过。

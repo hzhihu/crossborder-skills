@@ -54,7 +54,7 @@ h2 { font-size: 20px; line-height: 1.4; }
 h3 { font-size: 16px; }
 p { max-width: 768px; }
 .lead, .muted { color: var(--cb-color-text-muted); }
-.button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--cb-color-primary); border-radius: var(--cb-radius-md); background: var(--cb-color-primary); color: white; text-decoration: none; }
+.button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--cb-color-primary); border-radius: var(--cb-radius-md); background: var(--cb-color-primary); color: white; text-decoration: none; white-space: nowrap; }
 .button:hover { background: var(--cb-color-primary-hover); color: white; }
 .button.secondary { background: var(--cb-color-surface); color: var(--cb-color-primary); border-color: var(--cb-color-border-strong); }
 .button.secondary:hover { background: var(--cb-color-surface-subtle); }
