@@ -6,7 +6,7 @@
 
 原始需求以[第一版产品与技术方案](crossBorder_skills_hub_mvp_v1.md)为基础，技术实现遵循[技术架构](ARCHITECTURE.md)，数据约束遵循[数据库设计](DATABASE.md)，验收条件遵循[验收标准](ACCEPTANCE.md)。
 
-Phase 1、Phase 2 P0 和 Phase 3 P0 已完成；Phase 4 P0 采集核心代码已实施但尚未完成真实来源成功采集验收，定制审核工作台和 AI 尚未实现，实际工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
+Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0 和 Phase 5 P0 已完成；AI 尚未实现，实际工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
 
 第一版固定采用 Next.js + Payload CMS + PostgreSQL，不改变技术架构。
 

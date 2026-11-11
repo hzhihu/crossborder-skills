@@ -74,6 +74,6 @@
 
 ## 8. 当前实施边界
 
-Phase 1、Phase 2 P0 和 Phase 3 P0 已完成，当前工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
+Phase 1、Phase 2 P0、Phase 3 P0、Phase 4 P0 和 Phase 5 P0 已完成，当前工程进度与未交付范围以 [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) §1 为准。
 
 后续修改仍须按开发计划推进，不得提前实现后续阶段、P1、P2 或其他未确认业务。

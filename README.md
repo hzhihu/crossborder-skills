@@ -6,11 +6,11 @@ CrossBorder Skills Hub 是面向跨境电商业务场景的 AI Skills 资源发�
 
 ## 当前状态
 
-Phase 1 工程初始化、Phase 2 P0 核心数据模型和 Phase 3 P0 前台页面已完成并通过实际验证。Phase 4 P0 采集核心代码已实现，但真实公开 GitHub 成功采集尚未完成，不能标记为 Phase 4 验收通过。
+Phase 1 工程初始化、Phase 2 P0 核心数据模型、Phase 3 P0 前台页面、Phase 4 P0 公开来源采集和 Phase 5 P0 人工审核已完成并通过实际验证。真实 Worker 已成功采集公开 GitHub 与 Skills.sh 资源，重复导入未创建重复资源或版本；人工编辑、发布、驳回重提及待审核版本隔离均已验证。
 
-当前包含核心 Collections、状态与发布约束、历史版本、Payload Media、本地/S3 可选存储、公开首页、Skill 列表与详情、分类、专题、搜索、关于、SEO、响应式页面、Docker Compose、Jobs Worker 和 CI。GitHub 与 Skills.sh 地址解析、公开仓库读取、多 Skill 发现、Frontmatter 解析、重复检测、任务重试和重新采集已实施；审核工作台、AI 和 P1 增强能力尚未交付。
+当前包含核心 Collections、状态与发布约束、历史版本、Payload Media、本地/S3 可选存储、公开首页、Skill 列表与详情、分类、专题、搜索、关于、SEO、响应式页面、Docker Compose、Jobs Worker 和 CI。GitHub 与 Skills.sh 地址解析、公开仓库读取、多 Skill 发现、Frontmatter 解析、重复检测、任务重试和重新采集已实施；`/admin/review` 提供人工审核、编辑入口、发布和驳回，AI 和 P1 增强能力尚未交付。
 
-真实 Worker 已验证任务入队及 GitHub 403 失败记录；当前共享 IP 的未认证 GitHub API 请求受到限流，需要可用配额或配置可选 `GITHUB_TOKEN` 后完成真实成功采集与 Skills.sh 验收。
+真实 Worker 已验证任务入队、失败记录、GitHub 与 Skills.sh 成功采集及重复导入；GitHub 未认证请求受到限流时可配置可选 `GITHUB_TOKEN`。
 
 原始需求保留在 [第一版产品与技术方案](docs/crossBorder_skills_hub_mvp_v1.md)，本文档及后续规范均不替代原始需求。
 
@@ -98,7 +98,7 @@ docker run --rm -e PLAYWRIGHT_BASE_URL=http://host.docker.internal:3000 -e PLAYW
 
 ## 后续实施入口
 
-当前继续完成 [开发计划](docs/DEVELOPMENT_PLAN.md) Phase 4 的真实公开 GitHub 与 Skills.sh 成功采集验收；实际完成范围以该文件 §1 为准。
+当前进入 [开发计划](docs/DEVELOPMENT_PLAN.md) Phase 6 整体测试与部署；实际完成范围以该文件 §1 为准。
 
 产品事项的主要确认结论见 [产品规范](docs/PRODUCT.md#10-待确认事项)，仍开放的生产部署和协作事项见 [部署说明](docs/DEPLOYMENT.md) 与 [编码规范](docs/CODING_RULES.md)。
 

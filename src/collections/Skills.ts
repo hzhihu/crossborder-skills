@@ -4,6 +4,7 @@ import { APIError, type CollectionConfig } from 'payload'
 
 import { adminManaged, allowPublishedSkillRead, preventHardDelete, requireAdminField } from './access.ts'
 import { recrawlSkill } from '../modules/crawler/tasks.ts'
+import { publishSkillReview, rejectSkillReview } from '../modules/skills/review.ts'
 import { getSafeSourceUrl, normalizeRepositoryUrl } from '../modules/skills/source.ts'
 
 function getRelationshipID(value: unknown) {
@@ -20,7 +21,11 @@ export const Skills: CollectionConfig = {
         ...adminManaged(allowPublishedSkillRead),
         delete: () => false,
     },
-    endpoints: [{ handler: recrawlSkill, method: 'post', path: '/:id/recrawl' }],
+    endpoints: [
+        { handler: recrawlSkill, method: 'post', path: '/:id/recrawl' },
+        { handler: publishSkillReview, method: 'post', path: '/:id/publish' },
+        { handler: rejectSkillReview, method: 'post', path: '/:id/reject' },
+    ],
     indexes: [{ fields: ['repository_url', 'repository_path'], unique: true }],
     hooks: {
         beforeDelete: [preventHardDelete],

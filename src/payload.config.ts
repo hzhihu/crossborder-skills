@@ -56,6 +56,16 @@ const storagePlugins: Plugin[] = storageDriver === 's3'
 export default buildConfig({
     admin: {
         user: Users.slug,
+        components: {
+            beforeNavLinks: ['/components/admin/ReviewNavLink#ReviewNavLink'],
+            views: {
+                review: {
+                    Component: '/components/admin/ReviewView',
+                    meta: { title: '待审核工作台' },
+                    path: '/review',
+                },
+            },
+        },
         importMap: {
             baseDir: path.resolve(dirname),
         },

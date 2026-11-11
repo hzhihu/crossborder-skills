@@ -15,6 +15,7 @@
         "test:e2e": "playwright test",
         "verify:phase2": "node scripts/verifyPhase2.ts",
         "verify:phase4": "node scripts/verifyPhase4.ts",
+        "verify:phase5": "node scripts/verifyPhase5.ts",
         "payload": "payload --disable-transpile",
         "generate:importmap": "payload generate:importmap --disable-transpile",
         "generate:types": "payload generate:types --disable-transpile"
